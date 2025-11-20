@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Web - SDG 3: Good Health and Well-being</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for Inter font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'sdg3-green': '#4CAF50',
+                        'sdg3-light': '#C8E6C9',
+                        'sdg3-dark': '#388E3C',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ensures smooth transitions for state changes */
+        .page-content {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Styling for the SDG 3 specific banner */
+        #hero-banner {
+            background-image: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+        }
+
+        /* Utility for SVG icons */
+        .icon-lg {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        /* Styling for new header */
+        .header-title {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .header-nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .header-nav .nav-link {
+            padding: 1rem 1.25rem;
+            border-bottom: 3px solid transparent;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Active link style for new header */
+        .header-nav .nav-link.active,
+        .header-nav .nav-link:hover {
+            border-bottom-color: #4CAF50;
+            color: #388E3C;
+            font-weight: 500;
+        }
+        
+        /* Social Icon Styling for Footer */
+        .social-icon {
+            transition: transform 0.2s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <!-- NEW: Updated SDG 3 Header Navigation -->
+    <header class="sticky top-0 z-50 shadow-md bg-white">
+        <!-- Level 1: Website Title -->
+        <div class="header-title container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Centered Logo/Title -->
+                <div class="flex-1 text-center">
+                    <a href="#home" class="text-3xl font-bold text-sdg3-dark">
+                        Wellness Web
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button (remains in the corner) -->
+                <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-sdg3-dark hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sdg3-dark md:hidden absolute right-4 top-6">
+                    <!-- Icon for Menu -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Level 2: Navigation Links (Topics) -->
+        <nav class="header-nav hidden md:flex justify-center">
+            <a href="#home" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium" data-page="home">Home</a>
+            <a href="#nutrition" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium" data-page="nutrition">Nutrition & Diet</a>
+            <a href="#challenges" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium" data-page="challenges">Modern Health Challenges</a>
+            <a href="#health-exercise" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium" data-page="health-exercise">Health & Exercise</a>
+            <a href="#ngos" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium" data-page="ngos">NGOs & Initiatives</a>
+            <!-- UPDATED: Renamed old 6th link to resources -->
+            <a href="#resources" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium" data-page="resources">Conclusion & Resources</a>
+            <!-- NEW 7th LINK -->
+            <a href="#campaign" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium" data-page="campaign">Get Involved in the Campaign</a>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-sdg3-light hover:text-sdg3-dark" data-page="home">Home</a>
+                <a href="#nutrition" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-sdg3-light hover:text-sdg3-dark" data-page="nutrition">Nutrition & Diet</a>
+                <a href="#challenges" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-sdg3-light hover:text-sdg3-dark" data-page="challenges">Modern Health Challenges</a>
+                <a href="#health-exercise" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-sdg3-light hover:text-sdg3-dark" data-page="health-exercise">Health & Exercise</a>
+                <a href="#ngos" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-sdg3-light hover:text-sdg3-dark" data-page="ngos">NGOs & Initiatives</a>
+                 <!-- UPDATED: Renamed old 6th link to resources -->
+                <a href="#resources" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-sdg3-light hover:text-sdg3-dark" data-page="resources">Conclusion & Resources</a>
+                <!-- NEW 7th LINK -->
+                <a href="#campaign" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-sdg3-light hover:text-sdg3-dark" data-page="campaign">Get Involved in the Campaign</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="min-h-screen">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+            <!-- 1. Home Page/Section -->
+            <section id="page-home" class="page-content hidden">
+                <div id="hero-banner" class="rounded-xl shadow-xl p-8 lg:p-16 text-center mb-12">
+                    <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
+                        Wellness Web: Your Guide to SDG 3
+                    </h1>
+                    <p class="text-xl text-sdg3-light max-w-3xl mx-auto">
+                        Ensuring healthy lives and promoting well-being for all at all ages is fundamental to sustainable development. **Nutrition, disease control, and mental health are the cornerstones of this global goal.**
+                    </p>
+                    <a href="#nutrition" class="inline-block mt-6 px-8 py-3 bg-white text-sdg3-dark font-semibold rounded-full shadow-lg hover:bg-gray-100 transition duration-300">
+                        Explore Nutrition & Wellness
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-bold text-sdg3-dark mb-3 flex items-center">
+                            <svg class="icon-lg mr-2 text-sdg3-green" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-6h-2V9h4v8z"/></svg>
+                            Universal Health Coverage
+                        </h3>
+                        <p class="text-gray-600">Working towards a world where everyone can access essential, quality health services without financial hardship.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-bold text-sdg3-dark mb-3 flex items-center">
+                            <svg class="icon-lg mr-2 text-sdg3-green" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15h2v-6h2V9h-4v8z"/></svg>
+                            Tackling Major Diseases
+                        </h3>
+                        <p class="text-gray-600">Focusing efforts on ending the epidemics of AIDS, tuberculosis, malaria, and combating hepatitis and water-borne diseases.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-bold text-sdg3-dark mb-3 flex items-center">
+                            <svg class="icon-lg mr-2 text-sdg3-green" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-4h-2V9h4v8z"/></svg>
+                            Promoting Mental Health
+                        </h3>
+                        <p class="text-gray-600">Addressing the rising burden of non-communicable diseases and promoting mental health and well-being for all.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Nutrition & Diet Page/Section -->
+            <section id="page-nutrition" class="page-content hidden">
+                <h2 class="text-3xl font-bold text-sdg3-dark mb-6 border-b-2 border-sdg3-light pb-2">Balanced Diet: Fueling Good Health</h2>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 lg:p-8">
+                    <p class="mb-8 text-lg text-gray-700">
+                        A **balanced diet** is the foundation of good health, providing the essential nutrients, vitamins, and minerals your body needs to function, fight disease, and maintain energy levels. Eating a diverse range of foods is key.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <!-- Image Column -->
+                        <div>
+                            <img src="C:\Users\lab103\Desktop\FYIT1 47\image.webp" alt="A colorful array of fresh fruits and vegetables." class="rounded-lg shadow-md aspect-video object-cover">
+                        </div>
+                        
+                        <!-- Content Column -->
+                        <div>
+                            <h3 class="text-2xl font-semibold text-sdg3-dark mb-4">The Five Core Food Groups</h3>
+                            <div class="space-y-3">
+                                <div class="p-3 bg-sdg3-light rounded-lg">
+                                    <h4 class="font-bold text-sdg3-dark">1. Fruits and Vegetables</h4>
+                                    <p class="text-gray-700 text-sm">Rich in fiber, vitamins, and antioxidants. Aim for a wide variety of colors daily.</p>
+                                </div>
+                                <div class="p-3 bg-sdg3-light rounded-lg">
+                                    <h4 class="font-bold text-sdg3-dark">2. Grains (Carbohydrates)</h4>
+                                    <p class="text-gray-700 text-sm">Primary energy source. Choose whole grains (oats, brown rice) over refined options.</p>
+                                </div>
+                                <div class="p-3 bg-sdg3-light rounded-lg">
+                                    <h4 class="font-bold text-sdg3-dark">3. Protein Foods</h4>
+                                    <p class="text-gray-700 text-sm">Essential for growth and repair. Includes lean meats, fish, eggs, beans, nuts, and tofu.</p>
+                                </div>
+                                <div class="p-3 bg-sdg3-light rounded-lg">
+                                    <h4 class="font-bold text-sdg3-dark">4. Dairy or Alternatives</h4>
+                                    <p class="text-gray-700 text-sm">Provides calcium for strong bones. Includes milk, yogurt, or fortified plant-based drinks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Modern Health Challenges Page/Section -->
+            <section id="page-challenges" class="page-content hidden">
+                <h2 class="text-3xl font-bold text-sdg3-dark mb-6 border-b-2 border-sdg3-light pb-2">Modern Health Challenges</h2>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-8 bg-white p-6 rounded-xl shadow-lg">
+                    <div>
+                        <p class="mb-4 text-lg text-gray-700">
+                            While health has improved globally, new and evolving challenges threaten well-being. These issues are often rooted in rapid technological, environmental, and societal changes.
+                        </p>
+                        <p class="text-gray-600">
+                            From **environmental pollution** to the **mental stress** of a 24/7 digital world, these factors create a new landscape for public health that requires modern solutions.
+                        </p>
+                    </div>
+                    <div>
+                        <img src="C:\Users\lab103\Desktop\FYIT1 47\city.jpeg" alt="City skyline covered in thick smog and pollution." class="rounded-lg shadow-md aspect-video object-cover">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Challenge 1: Mental Stress/Burnout -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
+                        <h3 class="text-xl font-bold text-red-800 mb-2">Chronic Mental Stress & Burnout</h3>
+                        <p class="text-gray-600">Persistent work-life pressure and economic uncertainty increase the risk of cardiovascular disease and mental illness.</p>
+                    </div>
+                    <!-- Challenge 2: Digital Strain & Sedentary Lifestyle -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-indigo-500">
+                        <h3 class="text-xl font-bold text-indigo-800 mb-2">Digital Strain & Sedentary Habits</h3>
+                        <p class="text-gray-600">Heavy reliance on mobile phones and computers fosters a **sedentary lifestyle**, contributing to obesity and digital eye strain.</p>
+                    </div>
+                    <!-- Challenge 3: Environmental Pollution -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500">
+                        <h3 class="text-xl font-bold text-green-800 mb-2">Environmental Pollution</h3>
+                        <p class="text-gray-600">Poor air quality from traffic and industry, alongside water contamination, directly causes respiratory illnesses.</p>
+                    </div>
+                    <!-- Challenge 4: Sleep Deprivation -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-600">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-2">Widespread Sleep Deprivation</h3>
+                        <p class="text-gray-600">Late-night screen usage and 24/7 work cultures disrupt natural sleep cycles, impacting immunity and cognitive function.</p>
+                    </div>
+                    <!-- Challenge 5: Information Overload -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500">
+                        <h3 class="text-xl font-bold text-purple-800 mb-2">Information Overload & Anxiety</h3>
+                        <p class="text-gray-600">Constant consumption of news and social media can lead to anxiety and difficulty distinguishing fact from misinformation.</p>
+                    </div>
+                    <!-- Challenge 6: Health Inequality -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-gray-500">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Socioeconomic Health Inequality</h3>
+                        <p class="text-gray-600">Disparities in income and education mean that quality healthcare and nutritious food are not equally accessible to all.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Health & Exercise Page/Section -->
+            <section id="page-health-exercise" class="page-content hidden">
+                <h2 class="text-3xl font-bold text-sdg3-dark mb-6 border-b-2 border-sdg3-light pb-2">The Synergy of Health & Exercise</h2>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 lg:p-8">
+                    <!-- Section 1: Physical Exercise -->
+                    <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-sdg3-dark mb-4">Physical Exercise for a Strong Body</h3>
+                            <p class="text-gray-700 mb-4">
+                                Regular physical activity is one of the most effective ways to maintain health. It strengthens your cardiovascular system, builds muscle and bone density, and helps regulate weight.
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>**Cardio:** Aim for at least 30 minutes of moderate activity like brisk walking, cycling, or swimming most days of the week.</li>
+                                <li>**Strength:** Include resistance training (weights, bodyweight exercises) 2-3 times a week to maintain muscle mass.</li>
+                                <li>**Flexibility:** Stretching and practices like yoga help maintain mobility and prevent injuries.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <!-- Image for Physical Exercise -->
+                            <img src="C:\Users\lab103\Desktop\FYIT1 47\jogging.webp" alt="A person jogging in a park, looking energetic." class="rounded-lg shadow-md aspect-video object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Mental Well-being -->
+                    <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+                        <div>
+                             <!-- Image for Mental Well-being -->
+                            <img src="C:\Users\lab103\Desktop\FYIT1 47\yoga.webp" alt="A person practicing yoga peacefully outdoors." class="rounded-lg shadow-md aspect-video object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-sdg3-dark mb-4">Mental Well-being for a Clear Mind</h3>
+                            <p class="text-gray-700 mb-4">
+                                Mental health is integral to overall well-being. It affects how we think, feel, and act. Exercise is a powerful tool for mental wellness.
+                            </p>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>**Stress Reduction:** Exercise releases endorphins, which are natural mood-lifters and stress-reducers.</li>
+                                <li>**Improved Sleep:** Regular activity can help you fall asleep faster and deepen your sleep.</li>
+                                <li>**Mindfulness:** Practices like yoga and meditation help calm the nervous system and improve focus.</li>
+                                <li>**Set Boundaries:** Protecting your time for rest and activity is crucial for mental resilience.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 3: The Synergy -->
+                    <div>
+                        <h3 class="text-2xl font-semibold text-sdg3-dark mb-4 text-center">The Synergy: Body and Mind</h3>
+                        <p class="text-lg text-gray-700 max-w-3xl mx-auto text-center">
+                            Physical health and mental health are not separate; they are deeply interconnected. A healthy, active body supports a resilient and clear mind. Likewise, a calm and focused mind allows you to make better decisions for your physical health. Prioritizing both is the key to true well-being.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 5. NGOs & Initiatives Page/Section -->
+            <section id="page-ngos" class="page-content hidden">
+                <h2 class="text-3xl font-bold text-sdg3-dark mb-6 border-b-2 border-sdg3-light pb-2">NGOs & Global Initiatives</h2>
+                <p class="text-lg text-gray-700 mb-8">
+                    Non-governmental organizations (NGOs) are at the forefront of the mission to achieve SDG 3. They operate on the ground, delivering essential services, pioneering research, and holding governments accountable.
+                </p>
+
+                <div class="space-y-8">
+                    <!-- NGO 1: Doctors Without Borders -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 grid md:grid-cols-2 gap-6 items-center">
+                        <div>
+                            <img src="C:\Users\lab103\Desktop\FYIT1 47\ngo.jpeg" alt="NGO medical team providing aid in a field clinic" class="rounded-lg shadow-md aspect-video object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Doctors Without Borders (MSF)</h3>
+                            <p class="text-gray-600">A Nobel Peace Prize-winning organization, MSF provides emergency medical care in conflict zones, areas of epidemic outbreak, and regions affected by natural disasters, embodying the spirit of universal health coverage.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- NGO 2: The Global Fund -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 grid md:grid-cols-2 gap-6 items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">The Global Fund</h3>
+                            <p class="text-gray-600">A massive partnership designed to accelerate the end of AIDS, tuberculosis, and malaria as epidemics. The Global Fund raises and invests billions to support programs run by local experts in countries in need.</p>
+                        </div>
+                        <div>
+                            <img src="C:\Users\lab103\Desktop\FYIT1 47\worker.jpeg" alt="Humanitarian aid workers organizing medical supplies" class="rounded-lg shadow-md aspect-video object-cover">
+                        </div>
+                    </div>
+
+                    <!-- NGO 3: Partners in Health -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-6">
+                        <svg class="icon-lg text-sdg3-green flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-4h-2v4zm0-6h2V7h-2v4z"/></svg>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Partners in Health (PIH)</h3>
+                            <p class="text-gray-600">PIH takes a "whatever it takes" approach to build long-term, sustainable health systems in partnership with local communities. They focus on bringing high-quality care to the most vulnerable populations.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Conclusion & Resources Page/Section (UPDATED ID) -->
+            <section id="page-resources" class="page-content hidden">
+                <h2 class="text-3xl font-bold text-sdg3-dark mb-6 border-b-2 border-sdg3-light pb-2">Conclusion & Resources: Sustaining Well-being</h2>
+
+                <!-- Conclusion Summary -->
+                <div class="bg-white rounded-xl shadow-lg p-6 lg:p-8 mb-10">
+                    <h3 class="text-2xl font-semibold text-sdg3-dark mb-4">A Holistic Path to Health for All</h3>
+                    <p class="mb-4 text-lg text-gray-700">
+                        Achieving **SDG 3: Good Health and Well-being** requires a comprehensive approach, combining individual responsibility with global cooperation. We've explored the foundations of proper **nutrition**, the need for regular **physical activity**, the impact of **modern health challenges**, and the vital work of **NGOs** in bridging healthcare gaps.
+                    </p>
+                    <p class="text-gray-600">
+                        True well-being is a synergistic state—a strong body supported by a resilient mind. By understanding these pillars and engaging with health initiatives, we can collectively push forward the agenda for universal health coverage and a healthier future for all people at all ages.
+                    </p>
+                </div>
+
+                <!-- References and Links (Vacant Spot) -->
+                <div class="bg-white rounded-xl shadow-lg p-6 lg:p-8 border-t-4 border-sdg3-green">
+                    <h3 class="text-2xl font-bold text-sdg3-dark mb-4">References and Resources</h3>
+                    <p class="text-gray-600 mb-4">
+                        This section provides a dedicated, vacant space for you to add external links, academic references, and source materials used to compile this information. Please insert links below:
+                    </p>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-2 min-h-[150px] border border-dashed border-gray-300 p-4 rounded-lg bg-gray-50">
+                        <li class="text-gray-400">Placeholder for Reference Link 1 (e.g., World Health Organization Report)</li>
+                        <li class="text-gray-400">Placeholder for Reference Link 2 (e.g., Academic Journal on Nutrition)</li>
+                        <li class="text-gray-400">https://www.healthvolunteers.in/post/youth-and-sdg-3-pioneering-health-and-well-being-for-all</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- 7. New Get Involved in the Campaign Page/Section -->
+            <section id="page-campaign" class="page-content hidden">
+                <h2 class="text-3xl font-bold text-sdg3-dark mb-6 border-b-2 border-sdg3-light pb-2">Get Involved in the Campaign</h2>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 lg:p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-sdg3-dark mb-4">Join the Movement for Global Health Equity!</h3>
+                        <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                            The fight for Good Health and Well-being is a collective endeavor. Your support helps turn global goals into local realities. Join our campaign to amplify voices and fund life-saving health programs worldwide.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <!-- Action 1: Donate -->
+                        <div class="p-6 bg-sdg3-light rounded-xl shadow-md hover:shadow-lg transition duration-300">
+                            <svg class="w-10 h-10 mx-auto mb-3 text-sdg3-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2z"/></svg>
+                            <h4 class="font-bold text-sdg3-dark mb-2">Fund the Cause</h4>
+                            <p class="text-sm text-gray-700">Financial contributions directly support medical teams, vaccination drives, and maternal health initiatives on the ground.</p>
+                            <a href="#" class="inline-block mt-3 text-sm font-semibold text-sdg3-dark hover:text-sdg3-green">Make a Donation &rarr;</a>
+                        </div>
+                        
+                        <!-- Action 2: Share and Advocate -->
+                        <div class="p-6 bg-sdg3-light rounded-xl shadow-md hover:shadow-lg transition duration-300">
+                            <svg class="w-10 h-10 mx-auto mb-3 text-sdg3-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08V11c0-3.9-3.17-7.24-7-7.91V2h-2v1.09c-3.83.67-7 4-7 7.91v5.08L2 19h20v-2.92h-4zm-4 0h-4v-4h4v4zm2 2v-4h2v4h-2zm-8 0v-4H6v4h2z"/></svg>
+                            <h4 class="font-bold text-sdg3-dark mb-2">Become an Advocate</h4>
+                            <p class="text-sm text-gray-700">Use your social platforms and network to raise awareness about global health crises and the importance of SDG 3.</p>
+                            <a href="#" class="inline-block mt-3 text-sm font-semibold text-sdg3-dark hover:text-sdg3-green">Share Our Story &rarr;</a>
+                        </div>
+
+                        <!-- Action 3: Volunteer Skills -->
+                        <div class="p-6 bg-sdg3-light rounded-xl shadow-md hover:shadow-lg transition duration-300">
+                            <svg class="w-10 h-10 mx-auto mb-3 text-sdg3-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            <h4 class="font-bold text-sdg3-dark mb-2">Volunteer Your Time</h4>
+                            <p class="text-sm text-gray-700">Offer professional skills (IT, finance, logistics) to health organizations or volunteer locally at a community level.</p>
+                            <a href="#" class="inline-block mt-3 text-sm font-semibold text-sdg3-dark hover:text-sdg3-green">See Opportunities &rarr;</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form (Simplified) -->
+                    <div class="mt-10 max-w-xl mx-auto">
+                        <h3 class="text-2xl font-semibold text-sdg3-dark mb-4 text-center">Sign Up for Campaign Updates</h3>
+                        <form id="campaign-signup-form" class="space-y-4">
+                            <div>
+                                <label for="signup-email" class="sr-only">Email Address</label>
+                                <input type="email" id="signup-email" name="signup-email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sdg3-dark focus:ring-sdg3-dark p-3 border" placeholder="Enter your email to join the mailing list" required>
+                            </div>
+                            <button type="submit" class="w-full py-3 px-4 border border-transparent rounded-md shadow-lg text-lg font-medium text-white bg-sdg3-dark hover:bg-sdg3-green transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sdg3-dark">
+                                Count Me In!
+                            </button>
+                        </form>
+                        <p id="campaign-message" class="text-center mt-4 text-sm text-sdg3-dark hidden font-semibold">Thank you for joining the campaign! We'll send you updates soon.</p>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer (UPDATED with Social Media Icons) -->
+    <footer class="bg-sdg3-dark text-white mt-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+            
+            <!-- Social Media Icons -->
+            <div class="flex justify-center space-x-6 mb-6">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/" target="_blank" class="social-icon text-white hover:text-sdg3-light" aria-label="WhatsApp">
+                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.54 2 2 6.54 2 12.04c0 1.57.4 3.06 1.15 4.41L2.06 22l5.73-1.5c1.28.7 2.76 1.09 4.25 1.09 5.5 0 10.04-4.54 10.04-10.04S17.54 2 12.04 2zm3.84 14.85c-.17.27-.6.58-.83.65-.24.08-.5.12-.76.03-.49-.17-1.46-.6-2.8-1.74s-2.2-2.8-2.37-3.29c-.08-.26-.05-.52.03-.76.07-.23.38-.66.65-.83.27-.17.6-.26.79-.28.19-.02.41-.02.57.38.15.36.52 1.28.56 1.36.04.09.07.2-.01.31-.08.1-.5.4-.55.45-.05.06-.11.12-.17.18-.32.32-.47.53-.47.53-.29.4-.64.71-1.04.97-1.05.69-2.03 1.1-2.45 1.32-.42.22-.8.34-1.16.22-.36-.12-.8-.44-.8-1.2s.22-1.2.33-1.34c.12-.13.25-.2.43-.37.17-.16.35-.39.51-.59.16-.19.2-.3.32-.57.12-.27.02-.51-.06-.72-.07-.2-.6-.52-.84-.73-.24-.2-.55-.29-.86-.29-.31 0-.61.03-.89.17-.28.14-.58.33-.87.53-.29.21-.52.39-.52.73s.58 1.45.65 1.57c.07.12 1.13 1.76 2.74 3.17s3.51 2.37 4.75 2.58c.45.08.73.1.99.08.26-.03.58-.15.8-.32.22-.17.38-.4.49-.6.11-.2.25-.4.4-.54.15-.14.3-.25.5-.32.2-.07.41-.09.62-.03.22.06.45.18.66.36.21.18.35.4.45.6.1.2.16.4.16.63-.01.23-.11.45-.23.67z"/></svg>
+                </a>
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/" target="_blank" class="social-icon text-white hover:text-sdg3-light" aria-label="Facebook">
+                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3 8h-2V7h-3v3H8v2h2v4h3v-4h2l1-2z"/></svg>
+                </a>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/" target="_blank" class="social-icon text-white hover:text-sdg3-light" aria-label="Instagram">
+                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 12.5c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm4.5 4c0 2.48-2.02 4.5-4.5 4.5s-4.5-2.02-4.5-4.5 2.02-4.5 4.5-4.5 4.5 2.02 4.5 4.5z"/></svg>
+                </a>
+                <!-- X (Twitter) -->
+                <a href="https://x.com/" target="_blank" class="social-icon text-white hover:text-sdg3-light" aria-label="X (formerly Twitter)">
+                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 4.01c-.77.34-1.6.58-2.47.7.9-.53 1.55-1.37 1.87-2.38-.85.5-1.79.87-2.79 1.07-1.12-1.2-2.71-1.95-4.48-1.95-3.37 0-6.1 2.73-6.1 6.1 0 .48.05.95.15 1.39-5.07-.25-9.56-2.69-12.57-6.39-.52.9-.82 1.95-.82 3.07 0 2.11 1.07 3.98 2.68 5.07-.99-.03-1.92-.3-2.73-.75v.08c0 2.95 2.1 5.4 4.9 5.95-.51.14-1.05.2-1.61.2-.39 0-.77-.04-1.14-.11.78 2.43 3.03 4.19 5.7 4.24-2.08 1.63-4.7 2.6-7.55 2.6-.49 0-.97-.03-1.44-.09C2.69 20.31 5.7 21 8.84 21c7.22 0 11.16-5.97 11.16-11.16v-.5c.77-.55 1.44-1.24 1.97-2.02z"/></svg>
+                </a>
+            </div>
+
+            <p class="text-sm">&copy; 2025 Wellness Web. Promoting SDG 3: Good Health and Well-being.</p>
+            <p class="text-xs mt-2 opacity-75">Designed as a Single Page Application (SPA).</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for SPA Navigation and Interaction -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pages = document.querySelectorAll('.page-content');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const campaignSignupForm = document.getElementById('campaign-signup-form');
+            const campaignMessage = document.getElementById('campaign-message');
+
+            // Function to show the correct page based on the hash
+            const navigate = () => {
+                let hash = window.location.hash || '#home';
+                // This logic correctly finds the new page ID
+                let targetId = 'page-' + hash.substring(1); 
+
+                let pageFound = false;
+                pages.forEach(page => {
+                    if (page.id === targetId) {
+                        page.classList.remove('hidden');
+                        pageFound = true;
+                    } else {
+                        page.classList.add('hidden');
+                    }
+                });
+
+                // Default to home page if hash is invalid
+                if (!pageFound) {
+                    document.getElementById('page-home').classList.remove('hidden');
+                    hash = '#home';
+                }
+
+                // Update active link styling for desktop nav
+                navLinks.forEach(link => {
+                    link.classList.remove('active', 'text-sdg3-dark');
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('active', 'text-sdg3-dark');
+                    }
+                });
+
+                // Update active link styling for mobile nav
+                mobileNavLinks.forEach(link => {
+                    link.classList.remove('bg-sdg3-light', 'text-sdg3-dark', 'font-semibold');
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('bg-sdg3-light', 'text-sdg3-dark', 'font-semibold');
+                    }
+                });
+
+                // Hide mobile menu after navigation
+                mobileMenu.classList.add('hidden');
+                
+                // Scroll to top of page
+                window.scrollTo(0, 0);
+            };
+
+            // Event listener for hash change (back/forward buttons)
+            window.addEventListener('hashchange', navigate);
+
+            // Event listener for mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Event listeners for mobile navigation links (to close menu after click)
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 100);
+                });
+            });
+
+            // Handle the mock campaign signup form submission
+            if (campaignSignupForm) {
+                campaignSignupForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    campaignSignupForm.reset(); // Clear the form
+                    campaignMessage.classList.remove('hidden'); // Show success message
+
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        campaignMessage.classList.add('hidden');
+                    }, 5000);
+                });
+            }
+
+
+            // Initial page load
+            navigate();
+        });
+    </script>
+</body>
+</html>
