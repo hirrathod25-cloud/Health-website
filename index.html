@@ -563,7 +563,15 @@
                 });
             }
 
-
+            function validateForm(){
+                    var name = document.getElementByID("signup-email").value;
+                    if (name == ""){
+                    alert("Please enter your Email!");
+                    return false
+                    alert("Form submitted successfully!")
+                    return true;
+                }
+            }
             // Initial page load
             navigate();
         });
@@ -571,7 +579,3 @@
 </body>
 
 </html>
-
-
-
-
